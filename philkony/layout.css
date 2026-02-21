@@ -1,0 +1,122 @@
+:root{
+  --font-heading: "Atkinson Hyperlegible", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+    --max: 1440px;
+    --pad: clamp(1rem, 3vw, 2rem);
+    --gap: clamp(1rem, 2vw, 2rem);
+    --nav-h: 3.75rem;
+    --detail-cols: 1fr 1fr; /* default */
+    --media-cols:  minmax(0, 0.8fr) minmax(0, 1.1fr); /* vertical media row */
+  }
+
+  p{
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.55;
+  }
+
+/* layout.css (TOP of file) */
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,700;1,700&family=Inter:ital,wght@0,400;0,500;0,600&display=swap');
+
+  html{
+    scroll-behavior: smooth;
+  }
+
+  #contact{
+    scroll-margin-top: var(--nav-h);
+  }
+
+
+/* only on pages that need vertical layout */
+.layout-vertical{
+  --detail-cols: 1fr 1.365fr;              /* if you want text slightly wider right */
+  --media-cols:  minmax(0, 0.8fr) minmax(0, 1.1fr); /* keep your good media proportions */
+}
+
+  body{
+    font-family: var(--font-body);
+    margin: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-size: 1rem;
+    background: #fff;
+  }
+  
+  .container{
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 var(--pad);
+  }
+  
+  .fullbleed{ width: 100%; }
+
+  .footer{
+    background: #1A1A1A;
+    color: #fff;
+    padding: 3rem 0;  /* vertical height */
+    margin: 3rem 0 0;
+  }
+
+  .footer-inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--gap);
+  }
+
+/* Left block */
+  .footer-contact{
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .footer-email{
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1;
+    margin: 0;
+  }
+
+  /* Right block */
+  .footer-instagram{
+    font-size: 1rem;
+    text-decoration: none;
+    color: #fff;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px){
+    .footer-inner{
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .footer-instagram{
+      margin-top: 1.5rem;
+    }
+  }
+
+
+/* the frame */
+.project-media{
+  border-radius: 1rem;     /* your existing card radius */
+  overflow: hidden;        /* THIS makes it a mask */
+}
+
+/* the thing that moves */
+.project-media img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+
+  transform: translateY(30%);
+  transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+/* trigger */
+.project.reveal.is-visible .project-media img{
+  transform: translateY(0);
+}
+
+/* optional: title can appear normally (no fade) */
+  

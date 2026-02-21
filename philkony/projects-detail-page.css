@@ -1,0 +1,282 @@
+/* Title */
+.detail-title{
+  font-size: clamp(2.4rem, 4.5vw, 4.2rem);
+  line-height: 0.9;
+  margin: 3rem 0 2rem;
+}
+
+/* ONE grid to rule them all */
+.detail-grid{
+  display: grid;
+  grid-template-columns: var(--detail-cols);
+  gap: var(--gap);
+  align-items: start;
+}
+
+/* Force columns */
+.detail-left{ grid-column: 1; }
+.detail-right{ grid-column: 2;
+  margin-top: 2.4rem; 
+}
+
+/* Media placement */
+.tile--wide{ grid-column: 1 / -1; }
+
+/* Tiles (shared style) */
+.tile{
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #eee;
+  margin: 0;
+}
+
+.tile img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.tile video{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transform: scale(1.01);
+  transform-origin: center;
+}
+
+/* Small tile ratio = landing page tiles */
+.tile--small{
+  aspect-ratio: 16 / 10;
+}
+
+/* Wide tile ratio (optional) */
+.tile--wide{
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 9;
+}
+
+
+/* Deliverables */
+.detail-kicker{
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin: 0 0 1.2rem;
+}
+
+.detail-list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+/* Description */
+.detail-right p{
+  margin: 0 0 0rem;
+  line-height: 1.5;
+  max-width: 52ch;
+  justify-self: start;
+}
+
+h1, h2, h3,
+.detail-title{
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.02em; /* optional but nice */
+}
+
+
+/* Responsive */
+@media (max-width: 768px){
+  .detail-grid{
+    grid-template-columns: 1fr;
+  }
+  .detail-left,
+  .detail-right{
+    grid-column: auto;
+  }
+  .tile--wide{
+    grid-column: auto;
+  }
+}
+
+.carousel{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.car-viewport{
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  touch-action: pan-y;
+}
+
+.car-track{
+  display: flex;
+  height: 100%;
+  transform: translateX(0);
+  transition: transform 240ms ease;
+  will-change: transform;
+}
+
+.car-slide{
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/*arrows*/
+.car-btn{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 240ms ease;
+  width: 2.25rem;
+  height: 2.25rem;
+
+  border-radius: 1.5rem;
+  border: none;
+  cursor: pointer;
+
+  font-size: 1.5rem;
+  display: grid;
+  z-index: 2;
+
+  background: transparent;
+  color: #fff;
+  mix-blend-mode: difference;
+  box-shadow: inset 0 0 0 1px rgb(255, 255, 255);
+}
+
+.car-prev{ left: 0.5rem;}
+.car-next{ right: 0.5rem;}
+
+/* Hide arrows on touch-first devices (phone) */
+@media (hover: none) and (pointer: coarse){
+  .car-btn{ display: none; }
+}
+
+/* Keyboard focus */
+.car-viewport:focus-visible{
+  outline: 2px solid rgba(0,0,0,0.6);
+  outline-offset: 3px;
+}
+
+@media (hover: hover){
+  .car-btn:hover{
+    transform: translateY(-50%) scale(1.05);
+  }
+}
+
+.car-btn:active{
+  transform: translateY(-50%) scale(0.95);
+}
+
+/*RESULTS*/
+.results-list{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+}
+
+.results-list li{
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.result-number{
+  font-size: clamp(1rem, 2vw, 2rem);
+  font-weight: 700;
+  line-height: 0.8;
+}
+
+.result-label{
+  font-size: clamp(1rem, 1.3vw, 1.3rem);
+  font-weight: 400;
+  position: relative;
+}
+
+
+/* VERTICAL */
+/* IKEA media layout */
+.media-grid{
+  display: grid;
+  grid-template-columns: var(--media-cols);
+  gap: var(--gap);
+  margin-top: var(--gap);
+  align-items: start;
+}
+
+/* Left: true vertical tile */
+.media-grid .tile--tall{
+  aspect-ratio: 9 / 16;
+}
+
+/* Right: stack */
+.media-stack{
+  display: grid;
+  gap: var(--gap);
+}
+
+/* Keep your existing tile-small ratio */
+.media-grid .tile--small{
+  aspect-ratio: 16 / 10;
+}
+
+/* Make media fill its tile */
+.media-grid .tile img,
+.media-grid .tile video{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Mobile */
+@media (max-width: 768px){
+  .media-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+.media-grid{
+  display: grid;
+  gap: var(--gap);
+  margin-top: var(--gap);
+}
+
+/* two verticals */
+.media-grid--two-vertical{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* vertical tile size */
+.tile--vertical{
+  aspect-ratio: 9 / 16;
+}
+
+/* make sure videos fill tile */
+.tile video{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* mobile: stack them */
+@media (max-width: 768px){
+  .media-grid--two-vertical{
+    grid-template-columns: 1fr;
+  }
+}

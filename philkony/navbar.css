@@ -1,0 +1,91 @@
+* { box-sizing: border-box; }
+
+body{
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: 1rem;
+  background: #fff;
+}
+
+
+
+/* fixed full-width nav */
+.nav{
+  position: fixed;
+  inset: 0 0 auto 0; /* top:0 left:0 right:0 */
+  height: var(--nav-h);
+  z-index: 999;
+  background: transparent;
+}
+
+.nav-inner{
+  height: 100%;
+  padding: 0 var(--pad);
+  display: flex;
+  align-items: center;
+}
+
+.nav-links{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-links .name{ margin-right: auto; }
+.nav-links li + li{ margin-left: var(--gap); }
+
+.nav a{
+  color: #111;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+
+  padding: 0.45rem 0.75rem;
+  border-radius: 1.2rem;
+
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+/* hover = desktop pointer devices */
+@media (hover: hover) and (pointer: fine) {
+  .nav a:hover{
+    background: rgba(0,0,0,0.08);
+  }
+}
+
+/* active = press (mouse down / finger down) */
+.nav a:active{
+  background: rgba(0,0,0,0.14);
+  transform: scale(1);
+}
+
+/* focus for keyboard users */
+.nav a:focus-visible{
+  outline: 2px solid rgba(0,0,0,0.6);
+  outline-offset: 3px;
+}
+
+/* ===== Difference mode (optional) =====
+   Put nav--blend on the header to enable it.
+   This is the most stable way: blend on the header group. */
+.nav.nav--blend{
+  mix-blend-mode: difference;
+}
+
+.nav.nav--blend a{
+  color: #fff;
+}
+
+/* hover/active backgrounds when blending */
+@media (hover: hover) and (pointer: fine) {
+  .nav.nav--blend a:hover{
+    background: rgba(255, 255, 255, 0.14);
+  }
+}
+
+.nav.nav--blend a:active{
+  background: rgba(255,255,255,0.28);
+}
